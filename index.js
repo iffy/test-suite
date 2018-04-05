@@ -6,7 +6,7 @@ import Expo from 'expo';
 import jasmineModule from 'jasmine-core/lib/jasmine-core/jasmine';
 import Immutable from 'immutable';
 
-import * as TestUtils from '../TestUtils';
+import * as TestUtils from './TestUtils';
 
 let { ExponentTest } = NativeModules;
 
