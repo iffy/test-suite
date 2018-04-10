@@ -31,7 +31,7 @@ export async function ios(Log, { root = '.', 'ios-sim-app-url': iosSimAppUrl }) 
       type: 'raw',
       stream: {
         write: chunk => {
-          if (chunk.tag !== 'packager') {
+          if (chunk.tag !== 'metro') {
             return;
           }
 
@@ -42,7 +42,10 @@ export async function ios(Log, { root = '.', 'ios-sim-app-url': iosSimAppUrl }) 
             return;
           }
 
-          if (payload.type === 'initialize_packager_done') {
+          if (
+            payload.type === 'initialize_packager_done' /* SDK <=22 */ ||
+            payload.type === 'initialize_done'
+          ) {
             resolve();
           }
         },
