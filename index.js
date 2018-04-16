@@ -100,8 +100,8 @@ class App extends React.Component {
 
     // Load tests, confining to the ones named in the uri
     let modules = await getTestModulesAsync();
-    if (uri && uri.indexOf('+') > -1) {
-      const deepLink = uri.substring(uri.indexOf('+') + 1);
+    if (uri && uri.indexOf('--/') > -1) {
+      const deepLink = uri.substring(uri.indexOf('--/') + 3);
       const filterJSON = JSON.parse(deepLink);
       if (filterJSON.includeModules) {
         console.log('Only testing these modules: ' + JSON.stringify(filterJSON.includeModules));
