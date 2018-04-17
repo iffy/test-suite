@@ -238,6 +238,7 @@ export async function test(t) {
           await recordingObject.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_LOW_QUALITY);
           await recordingObject.startAsync();
           await retryForStatus(recordingObject, { isRecording: true });
+          await waitFor(defaultRecordingDurationMillis);
           await recordingObject.pauseAsync();
           await retryForStatus(recordingObject, { isRecording: false });
           await recordingObject.stopAndUnloadAsync();
