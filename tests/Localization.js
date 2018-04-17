@@ -1,6 +1,7 @@
 'use strict';
 
-import { Localization } from 'expo';
+import { DangerZone } from 'expo';
+const { Localization } = DangerZone;
 
 export const name = 'Localization';
 
