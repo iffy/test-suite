@@ -183,7 +183,7 @@ export async function test(t) {
       t.it(
         'geocodes a place of the right shape',
         async () => {
-          const result = await Location.geocodeAsync('PPG Paints Arena, Pittsburgh');
+          const result = await Location.geocodeAsync('900 State St, Salem, OR');
           t.expect(Array.isArray(result)).toBe(true);
           t.expect(typeof result[0]).toBe('object');
           const { latitude, longitude, accuracy, altitude } = result[0];
