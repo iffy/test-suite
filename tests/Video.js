@@ -811,6 +811,7 @@ export function test(t, { setPortalChild, cleanupPortal }) {
         const props = { style, source, shouldPlay: true, ref: refSetter };
         await mountAndWaitFor(<Video {...props} />);
         await retryForStatus(instance, { isPlaying: true });
+        await waitFor(500);
         await instance.pauseAsync();
         await retryForStatus(instance, { isPlaying: false });
         await instance.stopAsync();
