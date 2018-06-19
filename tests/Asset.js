@@ -1,8 +1,6 @@
 'use strict';
 
-import { NativeModules } from 'react-native';
-
-import { Asset } from 'expo';
+import { Asset, FileSystem } from 'expo';
 
 export const name = 'Asset';
 
@@ -45,11 +43,7 @@ export function test(t) {
             const asset = Asset.fromModule(module);
             await asset.downloadAsync();
 
-            const {
-              exists,
-              md5,
-              uri: cacheUri,
-            } = await NativeModules.ExponentFileSystem.getInfoAsync(asset.localUri, {
+            const { exists, md5, uri: cacheUri } = await FileSystem.getInfoAsync(asset.localUri, {
               cache: true,
               md5: true,
             });
