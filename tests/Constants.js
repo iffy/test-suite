@@ -8,9 +8,9 @@ export function test(t) {
   t.describe('Constants', () => {
     [
       'expoVersion',
-      'deviceId',
       'deviceName',
       'deviceYearClass',
+      'installationId',
       'isDevice',
       'sessionId',
       'manifest',
