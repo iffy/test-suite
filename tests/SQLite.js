@@ -267,7 +267,7 @@ export function test(t) {
               [],
               (tx, results) => {
                 t.expect(results.rows.length).toEqual(1);
-                t.expect(results.rows._array[0].user_version).toEqual(56);
+                t.expect(results.rows._array[0].user_version).toEqual(123);
               },
               onError
             );
