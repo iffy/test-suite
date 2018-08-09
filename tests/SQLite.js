@@ -221,5 +221,20 @@ export function test(t) {
       const { exists } = await FS.getInfoAsync(`${FS.documentDirectory}SQLite/test.db`);
       t.expect(exists).toBeTruthy();
     });
+
+    t.it('should allow nulls as bind parameters', async () => {
+      const db = SQLite.openDatabase('test.db');
+      await new Promise((resolve, reject) => {
+        db.transaction(
+          tx => {
+            const nop = () => {};
+            const onError = (tx, error) => reject(error);
+            tx.executeSql('SELECT COALESCE(?, 1)', [null], nop, onError);
+          },
+          reject,
+          resolve,
+        );
+      })
+    })
   });
 }
