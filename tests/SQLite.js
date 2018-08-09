@@ -222,14 +222,18 @@ export function test(t) {
       t.expect(exists).toBeTruthy();
     });
 
-    t.it('should allow nulls as bind parameters', async () => {
+    t.it('should allow nulls as bind parameters in SELECT statements', async () => {
       const db = SQLite.openDatabase('test.db');
       await new Promise((resolve, reject) => {
         db.transaction(
           tx => {
             const nop = () => {};
             const onError = (tx, error) => reject(error);
-            tx.executeSql('SELECT COALESCE(?, 1)', [null], nop, onError);
+            tx.executeSql('SELECT COALESCE(?, 1) AS foo', [null],
+              (tx, results) => {
+                t.expect(results.rows._array[0].foo).toBeNull();
+              },
+              onError);
           },
           reject,
           resolve,
