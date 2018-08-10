@@ -229,9 +229,10 @@ export function test(t) {
           tx => {
             const nop = () => {};
             const onError = (tx, error) => reject(error);
-            tx.executeSql('SELECT COALESCE(?, 1) AS foo', [null],
+            tx.executeSql('SELECT COALESCE(?, 1) AS foo, ? AS bar', [null, null],
               (tx, results) => {
-                t.expect(results.rows._array[0].foo).toBeNull();
+                t.expect(results.rows._array[0].foo).toEqual(1);
+                t.expect(results.rows._array[0].bar).toBeNull();
               },
               onError);
           },
